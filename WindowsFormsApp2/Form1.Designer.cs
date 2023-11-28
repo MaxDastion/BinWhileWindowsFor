@@ -32,37 +32,93 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TrashBack = new System.Windows.Forms.PictureBox();
             this.TimerTrashback = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TimerBottles = new System.Windows.Forms.Timer(this.components);
+            this.Points = new System.Windows.Forms.Label();
+            this.OpenBin = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.TrashBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OpenBin)).BeginInit();
             this.SuspendLayout();
             // 
             // TrashBack
             // 
+            this.TrashBack.BackColor = System.Drawing.Color.Transparent;
             this.TrashBack.Image = ((System.Drawing.Image)(resources.GetObject("TrashBack.Image")));
-            this.TrashBack.Location = new System.Drawing.Point(1, 350);
+            this.TrashBack.Location = new System.Drawing.Point(1, 349);
             this.TrashBack.Name = "TrashBack";
             this.TrashBack.Size = new System.Drawing.Size(100, 100);
             this.TrashBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.TrashBack.TabIndex = 0;
             this.TrashBack.TabStop = false;
+            this.TrashBack.WaitOnLoad = true;
             // 
             // TimerTrashback
             // 
             this.TimerTrashback.Enabled = true;
             this.TimerTrashback.Tick += new System.EventHandler(this.MoveTrashbackivent);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 96);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // TimerBottles
+            // 
+            this.TimerBottles.Enabled = true;
+            this.TimerBottles.Interval = 1000;
+            this.TimerBottles.Tick += new System.EventHandler(this.EventTimerBottle);
+            // 
+            // Points
+            // 
+            this.Points.AutoSize = true;
+            this.Points.BackColor = System.Drawing.Color.Transparent;
+            this.Points.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Points.Location = new System.Drawing.Point(12, 9);
+            this.Points.Name = "Points";
+            this.Points.Size = new System.Drawing.Size(0, 13);
+            this.Points.TabIndex = 2;
+            // 
+            // OpenBin
+            // 
+            this.OpenBin.BackColor = System.Drawing.Color.Transparent;
+            this.OpenBin.Image = ((System.Drawing.Image)(resources.GetObject("OpenBin.Image")));
+            this.OpenBin.Location = new System.Drawing.Point(117, 287);
+            this.OpenBin.Name = "OpenBin";
+            this.OpenBin.Size = new System.Drawing.Size(100, 100);
+            this.OpenBin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.OpenBin.TabIndex = 3;
+            this.OpenBin.TabStop = false;
+            this.OpenBin.Visible = false;
+            this.OpenBin.Click += new System.EventHandler(this.OpenBin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OpenBin);
             this.Controls.Add(this.TrashBack);
+            this.Controls.Add(this.Points);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyisDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyisUp);
             this.Resize += new System.EventHandler(this.ResizeEvent);
             ((System.ComponentModel.ISupportInitialize)(this.TrashBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OpenBin)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +126,10 @@
 
         private System.Windows.Forms.PictureBox TrashBack;
         private System.Windows.Forms.Timer TimerTrashback;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer TimerBottles;
+        private System.Windows.Forms.Label Points;
+        private System.Windows.Forms.PictureBox OpenBin;
     }
 }
 
