@@ -36,9 +36,12 @@
             this.TimerBottles = new System.Windows.Forms.Timer(this.components);
             this.Points = new System.Windows.Forms.Label();
             this.OpenBin = new System.Windows.Forms.PictureBox();
+            this.BoxMenu = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TrashBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenBin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoxMenu)).BeginInit();
             this.SuspendLayout();
             // 
             // TrashBack
@@ -55,7 +58,7 @@
             // 
             // TimerTrashback
             // 
-            this.TimerTrashback.Enabled = true;
+            this.TimerTrashback.Interval = 50;
             this.TimerTrashback.Tick += new System.EventHandler(this.MoveTrashbackivent);
             // 
             // pictureBox1
@@ -71,7 +74,6 @@
             // 
             // TimerBottles
             // 
-            this.TimerBottles.Enabled = true;
             this.TimerBottles.Interval = 1000;
             this.TimerBottles.Tick += new System.EventHandler(this.EventTimerBottle);
             // 
@@ -88,6 +90,7 @@
             // OpenBin
             // 
             this.OpenBin.BackColor = System.Drawing.Color.Transparent;
+            this.OpenBin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.OpenBin.Image = ((System.Drawing.Image)(resources.GetObject("OpenBin.Image")));
             this.OpenBin.Location = new System.Drawing.Point(117, 287);
             this.OpenBin.Name = "OpenBin";
@@ -96,7 +99,34 @@
             this.OpenBin.TabIndex = 3;
             this.OpenBin.TabStop = false;
             this.OpenBin.Visible = false;
-            this.OpenBin.Click += new System.EventHandler(this.OpenBin_Click);
+            // 
+            // BoxMenu
+            // 
+            this.BoxMenu.BackColor = System.Drawing.Color.Transparent;
+            this.BoxMenu.Location = new System.Drawing.Point(0, 0);
+            this.BoxMenu.Name = "BoxMenu";
+            this.BoxMenu.Size = new System.Drawing.Size(805, 449);
+            this.BoxMenu.TabIndex = 4;
+            this.BoxMenu.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.CausesValidation = false;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.button1.ImageKey = "(отсутствует)";
+            this.button1.Location = new System.Drawing.Point(200, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(382, 31);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Start game";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
             // Form1
             // 
@@ -105,6 +135,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BoxMenu);
             this.Controls.Add(this.OpenBin);
             this.Controls.Add(this.TrashBack);
             this.Controls.Add(this.Points);
@@ -117,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TrashBack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenBin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoxMenu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,7 +162,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer TimerBottles;
         private System.Windows.Forms.Label Points;
+        private System.Windows.Forms.PictureBox BoxMenu;
         private System.Windows.Forms.PictureBox OpenBin;
+        private System.Windows.Forms.Button button1;
     }
 }
 

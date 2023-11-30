@@ -14,36 +14,47 @@ namespace WindowsFormsApp2
     {
 
 
-        bool _moveRight, _moveLeft, _Open;
-        int  _posObj = 0, _Point =0;
+        bool _moveRight, _moveLeft, _Open, _esc;
+        int  _posBin = 0, _Point =0, _posBotle = 0;
 
-        int speed = 0;
+        int _speed = 0, _SmoothSpeedForBottles = 0;
         public Form1()
         {
             InitializeComponent();
             _Open= false;
             Points.Text = "Point" + _Point;
             OpenBin.Location = TrashBack.Location;
+            TimerBottles.Interval /= 50; 
         }
 
+        private void fontDialog1_Apply(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
+        #region Games
         private void MoveTrashbackivent(object sender, EventArgs e)
         {
             OpenBin.Location = TrashBack.Location;
-            speed = this.Size.Width / 2 - 50;
-            if (_moveLeft == true && TrashBack.Left > 0)
+            _speed = this.Size.Width / 2 - 50;
+            if (_moveLeft == true && TrashBack.Left > 0&& !_Open)
             {
-                if (!(TrashBack.Left - speed < 1))
+                if (!(TrashBack.Left - _speed < 1))
                 {
-                    TrashBack.Left -= speed;
-                    _posObj--;
+                    TrashBack.Left -= _speed;
+                    _posBin--;
                 }
             }
-            if (_moveRight == true && TrashBack.Right < this.Width -50)
+            if (_moveRight == true && TrashBack.Right < this.Width -50&& !_Open)
             {
-                if (!(TrashBack.Left + speed > this.Width - 50))
+                if (!(TrashBack.Left + _speed > this.Width - 50))
                 {
-                    TrashBack.Left += speed;
-                    _posObj++;
+                    TrashBack.Left += _speed;
+                    _posBin++;
                 }
             }
             if (_Open)
@@ -53,6 +64,15 @@ namespace WindowsFormsApp2
             if (!_Open)
             {
                 OpenBin.Visible = false;
+            }
+            if (_esc)
+            {
+                _esc = false;
+                BoxMenu.Visible = true;
+                button1.Visible = true ;
+                button1.Enabled = true ;
+                TimerBottles.Enabled = false ;
+                TimerTrashback.Enabled = false ;
             }
            
 
@@ -73,29 +93,33 @@ namespace WindowsFormsApp2
             {
                 _Open = true;
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                _esc = true;
+            }
         }
 
-        private void OpenBin_Click(object sender, EventArgs e)
-        {
 
-        }
+      
 
         private void ResizeEvent(object sender, EventArgs e)
         {
-            if (_posObj == 0)
+            if (_posBin == 0)
             {
 
             TrashBack.Left = 1;
-            }
-            if (_posObj == 1)
-            {
-                TrashBack.Left = speed;
                 
             }
-            if (_posObj == 2)
+            if (_posBin == 1)
             {
-                TrashBack.Left = speed*2;
+                TrashBack.Left = _speed;
+                
             }
+            if (_posBin == 2)
+            {
+                TrashBack.Left = _speed*2;
+            }
+
             TrashBack.Top = this.Height - 130;
             
            
@@ -106,22 +130,27 @@ namespace WindowsFormsApp2
         {
             Random rnd = new Random();
             int num = rnd.Next();
-
-            pictureBox1.Top += this.Height  /5;
-            if (pictureBox1.Top >= TrashBack.Top -100 && _Open )
+            _SmoothSpeedForBottles = (this.Height / 5) / 50 + _Point;
+            pictureBox1.Top +=_SmoothSpeedForBottles;
+            if (pictureBox1.Top >= TrashBack.Top -50 && _Open&& _posBotle == _posBin )
             {
+            num = rnd.Next();
                 _Point += 1;
                 Points.Text = "Point" + _Point;
-                pictureBox1.Left= speed*(num % 3);
+                pictureBox1.Left= _speed*(num % 3);
                 pictureBox1.Top = 0;
+                _posBotle = num % 3;
             }
-            else if (pictureBox1.Top >= TrashBack.Top - 100 && !_Open)
+            else if (pictureBox1.Top >= TrashBack.Top - 50 && !_Open)
             {
+                num = rnd.Next();
                 _Point -= 1;
                 Points.Text = "Point" + _Point;
-                pictureBox1.Left = speed * (num % 3);
+                pictureBox1.Left = _speed * (num % 3);
                 pictureBox1.Top = 0;
+                _posBotle = num % 3;
             }
+            
         }
 
         private void KeyisUp(object sender, KeyEventArgs e)
@@ -139,5 +168,18 @@ namespace WindowsFormsApp2
                 _Open= false;
             }
         }
+        #endregion Game
+        #region Menu
+
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            BoxMenu.Visible = false;
+            button1.Visible = false;
+            button1.Enabled = false;
+            TimerBottles.Enabled = true;
+            TimerTrashback.Enabled = true;  
+        }
+
+        #endregion Menu
     }
 }
